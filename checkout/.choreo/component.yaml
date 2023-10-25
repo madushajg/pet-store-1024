@@ -1,0 +1,22 @@
+apiVersion: core.choreo.dev/v1alpha1
+kind: ComponentConfig
+metadata:
+  # +required Name of the component that this configuration belongs to.
+  name: checkout-service
+  # +required Project name of the component that this component belongs to. Cannot be changed after creation.
+  projectName: pet-store
+  annotations:
+    componentType: service
+spec:
+  # +optional Incoming connection details for the component (AKA Endpoints).
+  inbound:
+    # +required Unique name for the endpoint. (This name will be used when generating the managed API)
+  - name: checkout
+    port: 9091
+    type: REST
+    # +optional Network level visibility of this endpoint. Defaults to Project
+    # Accepted values: Project|Organization|Public.
+    visibility: Public
+    # +optional Context (base path) of the API that exposed via this endpoint.
+    # This is mandatory if the endpoint type is set to REST or GraphQL.
+    context: /
